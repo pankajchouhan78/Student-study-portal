@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+
+<section class='text-center container'>
+
+    <div class="container">
+        <div class="content-section p-0 mt-5">
+
+            <div class="m-3">
+                <h2>{% for note in Notes %}{{note.title}}{% endfor %}</h2>
+            </div>
+
+            <hr class="p-0 m-0">
+            <p class="description m-5 p-5 text-xl-center">
+                {% for note in Notes %}
+                {{note.descriptions}}
+                {% endfor %}
+                good morning
+            </p>
+            <hr>
+        </div>
+        <a href="/notes/" type="button" class="btn btn-outline-dark">Back</a>
+
+    </div>
+
+</section>
+
+{% endblock content %}

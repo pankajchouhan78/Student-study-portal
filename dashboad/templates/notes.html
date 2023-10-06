@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for note in Notes %}
+        <div class="col-md-3">
+            <a href="{% url 'detail_notes' note.id %}">
+                <div class="card">
+                    <div class="card-header">{{note.title}}</div>
+                    <div class="card-body">{{note.descriptions|slice:"0:100"}}</div>
+                    <div class="card-footer mt-auto "><a href="{% url 'delete_notes' note.id %}">
+                        <i class="fa fa-trash fa-2x"></i></a>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <br><br>
+
+        {% endfor %}
+    </div>
+</div>
+<br><br>
+
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="ti" class="form-label">Title</label>
+          <input type="text" class="form-control" id="ti" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="text" class="form-label">Descritions</label>
+            <textarea class="form-control" id="text" rows="3" name="descriptions" ></textarea>
+          </div>
+        <button type="submit" class="btn btn-outline-info">Submit</button>
+      </form>
+    </br>
+      <a href="/" type="button" class="btn btn-outline-dark">Back</a>
+</div>
+
+{% endblock content %}
